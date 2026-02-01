@@ -28,38 +28,38 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
-        // 1. Setup Toolbar supaya Menu muncul
+
         val toolbar: Toolbar = findViewById(R.id.my_toolbar)
         setSupportActionBar(toolbar)
 
-        // 2. Initialize Firebase
+
         mAuth = FirebaseAuth.getInstance()
         val userId = mAuth.currentUser?.uid
 
-        // 3. Initialize UI Components
+
         tvWelcomeName = findViewById(R.id.tvWelcomeName)
-        tvCoordinates = findViewById(R.id.tvCurrentCoordinates) // Dari CardView XML kau
+        tvCoordinates = findViewById(R.id.tvCurrentCoordinates)
         btnMap = findViewById(R.id.btnMap)
         btnTrails = findViewById(R.id.btnTrails)
         btnProfile = findViewById(R.id.btnProfile)
         btnAbout = findViewById(R.id.btnAbout)
 
-        // 4. Ambil data User dari Firebase Database
+
         if (userId != null) {
-            // Kita ambil dari path "Users" yang kau simpan masa SignUp
+
             mDatabase = FirebaseDatabase.getInstance().getReference("Users").child(userId)
 
             mDatabase.addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     if (snapshot.exists()) {
-                        // 1. Ambil Nama
+
                         val name = snapshot.child("name").value?.toString() ?: "Hiker"
                         tvWelcomeName.text = "Hello, $name!"
 
-                        // 2. Ambil Lokasi (Pastikan Key "location" ada dalam DB)
+
                         val location = snapshot.child("location").value?.toString() ?: "Lokasi belum ditetapkan"
 
-                        // Kalau kau guna koordinat lat/lng
+
                         val lat = snapshot.child("lat").value?.toString()
                         val lng = snapshot.child("lng").value?.toString()
 
@@ -75,7 +75,7 @@ class HomeActivity : AppCompatActivity() {
                 }
             })
 
-            // OPTIONAL: Ambil koordinat yang MainActivity simpan tadi untuk display
+
             val locRef = FirebaseDatabase.getInstance().getReference("users_location").child(userId)
             locRef.get().addOnSuccessListener { snapshot ->
                 if (snapshot.exists()) {
@@ -86,7 +86,7 @@ class HomeActivity : AppCompatActivity() {
             }
         }
 
-        // 5. Button Listeners
+
         btnMap.setOnClickListener {
             startActivity(Intent(this, HazardMapActivity::class.java))
         }
@@ -106,10 +106,10 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
-    // --- LOGIK MENU ---
+
 
     override fun onCreateOptionsMenu(menu: android.view.Menu?): Boolean {
-        // Guna file main_menu.xml yang kau tunjuk tadi
+
         menuInflater.inflate(R.menu.main_menu, menu)
         return true
     }
@@ -126,7 +126,7 @@ class HomeActivity : AppCompatActivity() {
 
     private fun signOut() {
         mAuth.signOut()
-        // Logout dari Google juga supaya user boleh tukar akaun lain kali
+
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).build()
         GoogleSignIn.getClient(this, gso).signOut().addOnCompleteListener {
             val intent = Intent(this, LoginActivity::class.java)

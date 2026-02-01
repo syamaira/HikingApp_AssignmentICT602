@@ -15,12 +15,12 @@ class AboutActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_about)
 
-        // 1. Initialize UI Components
+
         val tvUserAgent = findViewById<TextView>(R.id.tvUserAgent)
-        val tvGithubLink = findViewById<TextView>(R.id.tvGithubLink) // ID baru dari XML tadi
+        val tvGithubLink = findViewById<TextView>(R.id.tvGithubLink)
         val btnBackHome = findViewById<Button>(R.id.btnBackHome)
 
-        // 2. Set User-Agent (Penting untuk markah Server-Side Metadata)
+
         val userAgent = try {
             WebSettings.getDefaultUserAgent(this)
         } catch (e: Exception) {
@@ -28,14 +28,14 @@ class AboutActivity : AppCompatActivity() {
         }
         tvUserAgent.text = userAgent
 
-        // 3. Logic untuk Clickable GitHub Link (Kriteria Markah: Clickable URL)
+
         tvGithubLink.setOnClickListener {
-            val githubUrl = "https://github.com/cikguhawa/hiking" // Ganti dengan link repository group kau
+            val githubUrl = "https://github.com/syamaira/HikingApp_AssignmentICT602.git"
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse(githubUrl))
             startActivity(intent)
         }
 
-        // 4. Back Button
+
         btnBackHome.setOnClickListener {
             finish()
         }

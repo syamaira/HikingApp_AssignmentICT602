@@ -15,7 +15,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // Pastikan nama file layout kau betul: activity_map atau layout_map
+
         setContentView(R.layout.layout_map)
 
         val mapFragment = supportFragmentManager

@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // Gunakan layout splash atau biarkan kosong sekejap sementara check logic
+
         setContentView(R.layout.activity_main);
 
         mAuth = FirebaseAuth.getInstance();
@@ -55,18 +55,18 @@ public class MainActivity extends AppCompatActivity {
                 if (location != null && mAuth.getCurrentUser() != null) {
                     String userId = mAuth.getCurrentUser().getUid();
 
-                    // TUKAR ALAMAT: Guna "Users" supaya sama dengan SignUp & Home
+
                     DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("Users").child(userId);
 
                     Map<String, Object> updates = new HashMap<>();
                     updates.put("lat", location.getLatitude());
                     updates.put("lng", location.getLongitude());
-                    // Kita tukar perkataan "Belum ditetapkan" kepada string koordinat
+
                     updates.put("location", location.getLatitude() + ", " + location.getLongitude());
                     updates.put("userAgent", WebSettings.getDefaultUserAgent(this));
                     updates.put("model", Build.MODEL);
 
-                    // Guna updateChildren supaya data "name" dan "email" sedia ada TAK HILANG
+
                     userRef.updateChildren(updates);
                 }
                 navigateToNextScreen();
@@ -78,20 +78,20 @@ public class MainActivity extends AppCompatActivity {
 
     private void navigateToNextScreen() {
         if (mAuth.getCurrentUser() != null) {
-            // Kalau dah login, pergi Home
+
             startActivity(new Intent(MainActivity.this, HomeActivity.class));
         } else {
-            // Kalau belum, pergi Login
+
             startActivity(new Intent(MainActivity.this, LoginActivity.class));
         }
-        finish(); // Tutup MainActivity supaya user tak boleh back ke sini
+        finish();
     }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == 101) {
-            // Tak kira user bagi permission atau tak, kita tetap move forward
+
             sendLocationAndNavigate();
         }
     }

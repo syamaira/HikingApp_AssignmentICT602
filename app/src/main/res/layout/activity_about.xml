@@ -68,7 +68,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Programme: [KOD PROGRAM] / Group: [NAMA GROUP]"
+                    android:text="Programme: CS240 / Group: RSCDCS24054"
                     android:textSize="13sp"
                     android:layout_marginTop="4dp"/>
 
