@@ -7,11 +7,11 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 
 class ProfileActivity : AppCompatActivity() {
-
 
     private lateinit var tvName: TextView
     private lateinit var tvEmail: TextView
@@ -26,10 +26,9 @@ class ProfileActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
 
-
         mAuth = FirebaseAuth.getInstance()
-        val userId = mAuth.currentUser?.uid
-
+        val currentUser = mAuth.currentUser
+        val userId = currentUser?.uid
 
         tvName = findViewById(R.id.tvProfileName)
         tvEmail = findViewById(R.id.tvProfileEmail)
@@ -38,18 +37,27 @@ class ProfileActivity : AppCompatActivity() {
         ivProfilePic = findViewById(R.id.ivProfilePic)
 
 
+        if (currentUser != null) {
+            val photoUrl = currentUser.photoUrl
+            if (photoUrl != null) {
+                Glide.with(this)
+                    .load(photoUrl)
+                    .circleCrop()
+                    .placeholder(R.drawable.ic_user_placeholder)
+                    .into(ivProfilePic)
+            }
+            // Set email directly from Auth
+            tvEmail.text = currentUser.email ?: "No Email Provided"
+        }
+
+
         if (userId != null) {
             mDatabase = FirebaseDatabase.getInstance().getReference("Users").child(userId)
-
             mDatabase.addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     if (snapshot.exists()) {
-
                         val name = snapshot.child("name").value.toString()
-                        val email = snapshot.child("email").value.toString()
-
                         tvName.text = name
-                        tvEmail.text = email
                     }
                 }
 
@@ -62,40 +70,37 @@ class ProfileActivity : AppCompatActivity() {
 
         btnLogout.setOnClickListener {
             mAuth.signOut()
-
-
             val intent = Intent(this, LoginActivity::class.java)
-
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
             finish()
-            Toast.makeText(this, "Logged out!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Successfully logged out!", Toast.LENGTH_SHORT).show()
         }
 
 
         btnEdit.setOnClickListener {
             val builder = android.app.AlertDialog.Builder(this)
-            builder.setTitle("Edit Nama")
-
+            builder.setTitle("Edit Display Name")
 
             val input = android.widget.EditText(this)
             input.setText(tvName.text.toString())
             builder.setView(input)
 
-            builder.setPositiveButton("Simpan") { _, _ ->
-                val newName = input.text.toString()
+            builder.setPositiveButton("Save") { _, _ ->
+                val newName = input.text.toString().trim()
                 if (newName.isNotEmpty()) {
-
                     mDatabase.child("name").setValue(newName).addOnCompleteListener { task ->
                         if (task.isSuccessful) {
-                            Toast.makeText(this, "Profil dikemaskini!", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this, "Profile updated!", Toast.LENGTH_SHORT).show()
                         } else {
-                            Toast.makeText(this, "Gagal update!", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this, "Update failed!", Toast.LENGTH_SHORT).show()
                         }
                     }
+                } else {
+                    Toast.makeText(this, "Name cannot be empty", Toast.LENGTH_SHORT).show()
                 }
             }
-            builder.setNegativeButton("Batal") { dialog, _ -> dialog.cancel() }
+            builder.setNegativeButton("Cancel") { dialog, _ -> dialog.cancel() }
             builder.show()
         }
     }

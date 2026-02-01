@@ -86,8 +86,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="16dp"
-                android:text="News: Mount Kinabalu trail is clear for today. Keep hiking!"
-                android:textColor="#558B2F" />
+                android:text="Loading news..."
+                android:textColor="#558B2F"
+                android:singleLine="true"
+                android:ellipsize="marquee"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:scrollHorizontally="true"
+                android:focusable="true"
+                android:focusableInTouchMode="true" />
         </androidx.cardview.widget.CardView>
 
         <TextView

@@ -27,8 +27,8 @@ class HazardMapActivity : AppCompatActivity(), OnMapReadyCallback {
         progressBar = findViewById(R.id.progressBar)
         progressBar.visibility = View.VISIBLE
 
-        // 1. Initialize Firebase Reference ke node HikingPlaces
-        mDatabase = FirebaseDatabase.getInstance().getReference("HikingPlaces")
+
+        mDatabase = FirebaseDatabase.getInstance().getReference("Hazards")
 
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
@@ -71,7 +71,7 @@ class HazardMapActivity : AppCompatActivity(), OnMapReadyCallback {
                         }
                     }
 
-                    // Zoom ke Malaysia Center sebagai permulaan
+
                     val malaysia = LatLng(4.2105, 101.9758)
                     mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(malaysia, 6f))
                 }

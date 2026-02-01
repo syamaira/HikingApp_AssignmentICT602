@@ -82,11 +82,13 @@ class SignUpActivity : AppCompatActivity() {
                     userMap["name"] = name
                     userMap["email"] = email
                     userMap["uid"] = userId
-                    userMap["location"] = "Belum ditetapkan"
+                    userMap["latitude"] = 0.0   // Default value
+                    userMap["longitude"] = 0.0  // Default value
+                    userMap["status"] = "Active"
 
                     ref.child(userId).setValue(userMap).addOnCompleteListener { dbTask ->
                         if (dbTask.isSuccessful) {
-                            Toast.makeText(this, "Account created successfully!", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this, "Registration Successful!", Toast.LENGTH_SHORT).show()
                             finish()
                         }
                     }
