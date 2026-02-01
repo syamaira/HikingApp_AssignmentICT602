@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "520309289360",
+    "firebase_url": "https://hikely-e986d-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "hikely-e986d",
+    "storage_bucket": "hikely-e986d.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:520309289360:android:9c1cf170a571048fae0315",
+        "android_client_info": {
+          "package_name": "com.example.hiking"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "520309289360-v43ck4h1ao11kq390smk8hepl6t0vvla.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.hiking",
+            "certificate_hash": "71bf58ce22e010b88e6b79f7fe583ac9f153af5b"
+          }
+        },
+        {
+          "client_id": "520309289360-5ps18g47vab34u2gb75i8e886ebjm0ve.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBXcCVCE3t3QUzfa0sQLYHCWpHxXolJTtE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "520309289360-5ps18g47vab34u2gb75i8e886ebjm0ve.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

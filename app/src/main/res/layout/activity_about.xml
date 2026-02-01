@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F1F8E9">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="About Hikely"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            android:textColor="#1B5E20"
+            android:layout_gravity="center"
+            android:layout_marginBottom="16dp"/>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="2dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Device Metadata (Server Log)"
+                    android:textStyle="bold"
+                    android:textColor="#2E7D32"/>
+                <TextView
+                    android:id="@+id/tvUserAgent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Fetching User-Agent..."
+                    android:textSize="11sp"
+                    android:layout_marginTop="4dp"/>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="2dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Project Details"
+                    android:textStyle="bold"
+                    android:textColor="#2E7D32"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Programme: [KOD PROGRAM] / Group: [NAMA GROUP]"
+                    android:textSize="13sp"
+                    android:layout_marginTop="4dp"/>
+
+                <TextView
+                    android:id="@+id/tvGithubLink"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="🔗 Click here for GitHub Repository"
+                    android:textColor="#1976D2"
+                    android:textStyle="bold"
+                    android:textSize="14sp"
+                    android:layout_marginTop="12dp"
+                    android:padding="4dp"
+                    android:background="?attr/selectableItemBackground"/>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Development Team"
+            android:textStyle="bold"
+            android:layout_marginBottom="12dp"
+            android:textColor="#33691E"/>
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="2"
+            android:alignmentMode="alignMargins">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="10dp"
+                android:layout_marginBottom="10dp">
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:src="@drawable/dev1"
+                    android:background="@drawable/input_background"
+                    android:padding="2dp"
+                    android:scaleType="centerCrop"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Wan Nur Zuhairah binti Wan Nazidi"
+                    android:textStyle="bold"
+                    android:textSize="13sp"
+                    android:gravity="center"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2023299252"
+                    android:textSize="11sp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="10dp"
+                android:layout_marginBottom="10dp">
+                <ImageView android:layout_width="70dp" android:layout_height="70dp" android:src="@drawable/dev5" android:padding="2dp" android:scaleType="centerCrop" android:background="@drawable/input_background"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Aisyah Humaira' binti Zaidi" android:textStyle="bold" android:textSize="13sp" android:gravity="center"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="2023272858" android:textSize="11sp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="10dp"
+                android:layout_marginBottom="10dp">
+                <ImageView android:layout_width="70dp" android:layout_height="70dp" android:src="@drawable/dev4" android:padding="2dp" android:scaleType="centerCrop" android:background="@drawable/input_background"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Nurul Izzah binti Idris" android:textStyle="bold" android:textSize="13sp" android:gravity="center"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="2023479726" android:textSize="11sp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="10dp"
+                android:layout_marginBottom="10dp">
+                <ImageView android:layout_width="70dp" android:layout_height="70dp" android:src="@drawable/dev3" android:padding="2dp" android:scaleType="centerCrop" android:background="@drawable/input_background"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Nur Afrina binti Mohamad Saini" android:textStyle="bold" android:textSize="13sp" android:gravity="center"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="2023218106" android:textSize="11sp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="10dp">
+                <ImageView android:layout_width="70dp" android:layout_height="70dp" android:src="@drawable/dev2" android:padding="2dp" android:scaleType="centerCrop" android:background="@drawable/input_background"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Iffah binti Ishak" android:textStyle="bold" android:textSize="13sp" android:gravity="center"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="2023885208" android:textSize="11sp"/>
+            </LinearLayout>
+
+        </GridLayout>
+
+        <Button
+            android:id="@+id/btnBackHome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Back to Dashboard"
+            android:backgroundTint="#2E7D32"
+            android:layout_marginTop="20dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="© 2026 Hikely Project | For Academic Purposes Only\nAll Rights Reserved."
+            android:gravity="center"
+            android:textSize="10sp"
+            android:textColor="#757575"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="20dp"/>
+
+    </LinearLayout>
+</ScrollView>

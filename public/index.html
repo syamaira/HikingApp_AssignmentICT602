@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hikely Server Admin</title>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-database-compat.js"></script>
+    <style>
+        body { font-family: sans-serif; background: #F1F8E9; padding: 20px; }
+        .card { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        th { background: #2E7D32; color: white; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2>🥾 Hikely: User Location Logs</h2>
+        <table id="userTable">
+            <thead>
+                <tr>
+                    <th>Real Name</th>
+                    <th>GPS Coordinates</th>
+                    <th>User-Agent (Device)</th>
+                    <th>Location Info</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody"></tbody>
+        </table>
+    </div>
+
+    <script>
+        const firebaseConfig = {
+  apiKey: "AIzaSyCq3HH-DM3NlTJv_5DrN19HSe8Ci7WmPwo",
+  authDomain: "hikely-e986d.firebaseapp.com",
+  databaseURL: "https://hikely-e986d-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "hikely-e986d",
+  storageBucket: "hikely-e986d.firebasestorage.app",
+  messagingSenderId: "520309289360",
+  appId: "1:520309289360:web:4fec488e724d827dae0315",
+  measurementId: "G-DYZRQ3Y7B5"
+};
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.database().ref("Users");
+
+        db.on('value', (snapshot) => {
+            const tbody = document.getElementById('tableBody');
+            tbody.innerHTML = "";
+            snapshot.forEach((childSnapshot) => {
+                const data = childSnapshot.val();
+                tbody.innerHTML += `
+                    <tr>
+                        <td>${data.name || 'N/A'}</td>
+                        <td>${data.lat || '0'}, ${data.lng || '0'}</td>
+                        <td>${data.userAgent || 'Android Device'}</td>
+                        <td>${data.location || 'N/A'}</td>
+                    </tr>`;
+            });
+        });
+    </script>
+</body>
+</html>
+
