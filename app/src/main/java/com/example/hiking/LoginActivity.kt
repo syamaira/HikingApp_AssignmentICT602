@@ -77,7 +77,7 @@ class LoginActivity : AppCompatActivity() {
         mAuth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    // Untuk email login, data biasanya dah ada kat DB masa SignUp
+
                     goToHome()
                 } else {
                     Toast.makeText(this, "Error: ${task.exception?.message}", Toast.LENGTH_LONG).show()
@@ -118,20 +118,25 @@ class LoginActivity : AppCompatActivity() {
                 val user = mAuth.currentUser
                 val userId = user?.uid ?: ""
 
-                // Mapping data untuk simpan ke Database
-                val userMap = mapOf(
-                    "name" to (user?.displayName ?: "User Hiking"),
+                /
+                val userMap = hashMapOf(
+                    "uid" to userId,
+                    "name" to (user?.displayName ?: "Hiker"),
                     "email" to (user?.email ?: ""),
-                    "location" to "Belum ditetapkan"
+                    "latitude" to 0.0,
+                    "longitude" to 0.0
                 )
 
-                // Simpan ke node "Users"
+
                 FirebaseDatabase.getInstance().getReference("Users")
                     .child(userId)
-                    .updateChildren(userMap) // Guna updateChildren supaya tak padam data lama kalau ada
+                    .updateChildren(userMap as Map<String, Any>)
                     .addOnCompleteListener {
+                        Toast.makeText(this, "Welcome, ${user?.displayName}", Toast.LENGTH_SHORT).show()
                         goToHome()
                     }
+            } else {
+                Toast.makeText(this, "Authentication Failed.", Toast.LENGTH_SHORT).show()
             }
         }
     }
