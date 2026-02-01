@@ -21,7 +21,7 @@
             android:layout_height="120dp"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="16dp"
-            android:src="@drawable/hiking"
+            android:src="@drawable/logo"
             android:contentDescription="App Logo"
             android:scaleType="centerCrop"/>
 

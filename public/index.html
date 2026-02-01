@@ -47,10 +47,16 @@
             tbody.innerHTML = "";
             snapshot.forEach((childSnapshot) => {
                 const data = childSnapshot.val();
+                
+                // Guna OR (||) untuk check kedua-dua versi nama key
+                const latitude = data.latitude || data.lat || '0';
+                const longitude = data.longitude || data.lng || '0';
+                const name = data.name || data.fullName || 'N/A';
+
                 tbody.innerHTML += `
                     <tr>
-                        <td>${data.name || 'N/A'}</td>
-                        <td>${data.lat || '0'}, ${data.lng || '0'}</td>
+                        <td>${name}</td>
+                        <td>${latitude}, ${longitude}</td>
                         <td>${data.userAgent || 'Android Device'}</td>
                         <td>${data.location || 'N/A'}</td>
                     </tr>`;

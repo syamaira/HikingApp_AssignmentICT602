@@ -12,7 +12,7 @@ import com.google.firebase.database.*
 
 class ProfileActivity : AppCompatActivity() {
 
-    /
+
     private lateinit var tvName: TextView
     private lateinit var tvEmail: TextView
     private lateinit var btnLogout: Button
