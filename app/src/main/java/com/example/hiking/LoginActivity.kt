@@ -118,7 +118,7 @@ class LoginActivity : AppCompatActivity() {
                 val user = mAuth.currentUser
                 val userId = user?.uid ?: ""
 
-                /
+
                 val userMap = hashMapOf(
                     "uid" to userId,
                     "name" to (user?.displayName ?: "Hiker"),
